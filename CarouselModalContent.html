@@ -1,0 +1,17 @@
+<!-- Image gallery modal content -->
+
+<carousel interval="carouselInterval" disable-animation="true">
+    <button style="position:absolute;float:left;background-color:inherit;border: 10px solid transparent;z-index:1000000;" type="button" class="btn btn-default btn-lg" data-ng-click="$close(result)">
+      <span class="glyphicon glyphicon-remove" title="close window"></span>
+    </button> 
+
+    <slide data-ng-repeat="slide in images" active="slide.active">
+        <img data-ng-src="{{slide.image}}" style="margin:auto;">
+        <div class="carousel-caption">
+            <h4>{{slide.description}}</h4>
+        </div>
+    </slide>
+</carousel>
+
+
+

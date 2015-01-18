@@ -1,0 +1,133 @@
+<div>
+    <div class="row">
+
+        <div class="col-xs-4"></div>
+        <div class="col-xs-6">
+            <h1>Before &amp After</h1>
+        </div>
+        <div class="col-xs-1"> </div>
+    
+        <div class="col-xs-3"></div>
+        <div class="col-xs-6" style="margin-left:50px;">
+            <div class="jump-list" data-ng-repeat="window in windows">
+                <a class="btn btn-primary btn-sm" style="margin-top: 5px;" data-ng-click="goToWindow(window.title)"><b>{{window.title}}</b></a>
+            </div>                        
+        </div>
+        <div class="col-xs-1"> </div>
+    </div>    
+
+    <div>
+        &emsp;
+    </div>        
+
+    <div class="row">
+        <div class="col-xs-1"></div>
+
+        <div class="col-xs-10">
+            <div data-ng-repeat="window in windows">
+                <a id="{{window.title}}"></a>
+
+                <!-- generic window in a closed state -->
+                <div class="backdrop" data-ng-show="!windowStates[$index]">
+                    <button style="float:left;" type="button" class="btn btn-default btn-lg" data-ng-click="alterWindow($index)">
+                      <span class="glyphicon glyphicon-plus" title="Maximize Window"></span>
+                    </button> 
+                    <h4 align="center">{{window.title}}</h4>
+                </div>
+
+                <!-- generic window in an open state -->
+                <div class="backdrop" data-ng-show="windowStates[$index]">
+                    <button style="float:left;" type="button" class="btn btn-default btn-lg" data-ng-click="alterWindow($index)">
+                      <span class="glyphicon glyphicon-minus" title="Minimize Window"></span>
+                    </button> 
+                    <button data-ng-controller="ModalController" style="float:left;" type="button" class="btn btn-default btn-lg" data-ng-click="openCarousel('lg', window.images, window.title)">
+                      <span class="glyphicon glyphicon-play-circle" title="View as Slideshow"></span>
+                    </button>                     
+                    <h4 align="center">{{window.title}}</h4>
+                    <div class="para">
+
+                        <!-- if < 3 pics -->
+                        <div data-ng-show="window.images.length < 3" class="window-images" data-ng-init="curIndex = $index" data-ng-repeat="image in windows[$index].images">
+                            <div class="row">
+                                <div class="col-xs-5"></div>
+                                <div data-ng-controller="ModalController" class="col-xs-4"><a data-ng-href="" data-ng-click="viewImage('lg', image.src, image.description)"><img style="max-width:100%; max-height:100%;cursor:pointer;" data-ng-src="{{image.src}}"></a></div>    
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-5"></div>
+                                <div class="col-xs-4"><p style="font-size:18px; font-family:'josefin-slab';">{{image.description}}</p></div>
+                            </div>
+                        </div>
+
+                        <!-- if > 3 pics -->
+                        <div data-ng-show="window.images.length >= 3" data-ng-repeat="imageGrouping in windows[$index].imageGroupings">
+                            <div class="window-images" data-ng-repeat="image in imageGrouping">
+                                <div class="row">
+                                    <div class="col-xs-5"></div>
+                                    <div data-ng-controller="ModalController" class="col-xs-4"><a data-ng-href="" data-ng-click="viewImage('lg', image.src, image.description)"><img style="max-width:100%; max-height:100%;cursor:pointer;" data-ng-src="{{image.src}}"></a></div>    
+                                </div>                                
+                                <div class="row">
+                                    <div class="col-xs-5"></div>
+                                    <div class="col-xs-4"><p style="font-size:18px; font-family:'josefin-slab';">{{image.description}}</p></div>
+                                </div>                            
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                &emsp;
+            </div>
+            
+        </div>
+    </div>
+
+        <div class="row">
+            <div class="col-xs-5"></div>
+            <div class="col-xs-4">
+                <a href="#" class="btn btn-primary btn-lg">Home</a>
+                <a href="" class="btn btn-primary btn-lg" data-ng-click="goToTop()">Top</a>
+            </div>
+        </div>
+</div>
+
+
+
+
+<!--
+<center>
+
+    <div class="col-xs-6"></div>
+    <div class="col-xs-6">
+        <h1>Before &amp After</h1>
+    </div>
+
+    <div data-ng-controller="BeforeAfterController">
+        <div data-ng-repeat="comparison in comparisons">          
+            <div class="before-after-comparison">
+                <div class="comparison">
+                    <b style="font-size: 18px; font-family: 'Josefin Slab'; font-weight: bold; font-style: italic;">{{comparison.title}}</b>
+                    <br>
+                    <br>
+                    <div class="comparison-button-left">
+                        <button type="button" class="btn btn-default btn-lg" data-ng-click="rotateBackward($index)">
+                          <span class="glyphicon glyphicon-chevron-left"></span>
+                        </button>
+                    </div>   
+                    <div class="image">    
+                        <div class="image-right" data-ng-click="afterImageClicked($index)"><img class="comparison-thumbnail" data-ng-src="{{comparison.beforeSource}}"></div>
+                        <div class="image-left" data-ng-click="afterImageClicked($index)"><img class="comparison-thumbnail" data-ng-src="{{comparison.afterSource}}"></div>
+                    </div>
+                    <div class="comparison-button-right">
+                        <button type="button" class="btn btn-default btn-lg" data-ng-click="rotateForward($index)">
+                          <span class="glyphicon glyphicon-chevron-right"></span>
+                        </button>              
+                    </div>  
+                    <br>
+                    {{comparison.description}}
+                </div>
+                <br>
+            </div>
+        </div>
+        <a href="#" class="btn btn-primary btn-lg">Home</a>
+    </div>
+</center>
+-->

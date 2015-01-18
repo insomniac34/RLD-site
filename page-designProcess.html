@@ -1,0 +1,69 @@
+<div data-ng-controller="DesignProcessController">
+
+        <div class="row">
+
+            <div class="col-xs-3"></div>
+            <div class="col-xs-6">
+                <h1>The Design Process</h1>
+            </div>
+            <div class="col-xs-3"></div>
+        
+            <div class="col-xs-4"></div>
+            <div class="col-xs-6" style="margin-left:50px;">
+                <div class="jump-list" data-ng-repeat="window in windows">
+                    <a class="btn btn-primary btn-sm" style="margin-top: 5px;" data-ng-click="goToWindow(window.title)"><b>{{window.title}}</b></a>
+                </div>                        
+            </div>
+            <div class="col-xs-1"> </div>
+
+      
+        </div>
+
+        <div>
+            &emsp;
+        </div>
+
+        <div class="row">
+
+            <div class="col-xs-1"> </div>
+
+            <div class="col-xs-10">
+                <div data-ng-repeat="window in windows">
+
+                    <!-- Used for navigating to portion of webpage -->
+                    <a id="{{window.title}}"></a>
+
+                    <div class="backdrop" data-ng-show="!windowStates[$index]">
+                        <button style="float:left;" type="button" class="btn btn-default btn-lg" data-ng-click="alterWindow($index)">
+                          <span class="glyphicon glyphicon-plus"></span>
+                        </button> 
+                        <h4 align="center">{{window.title}}</h4>
+                    </div>
+                    <div class="backdrop" data-ng-show="windowStates[$index]">
+                        <button style="float:left;" type="button" class="btn btn-default btn-lg" data-ng-click="alterWindow($index)">
+                          <span class="glyphicon glyphicon-minus"></span>
+                        </button> 
+                        <h4 align="center">{{window.title}}</h4>
+                        <div class="para">
+                                <p>
+                                    {{window.content}}
+                                    <ul style="" data-ng-repeat="bulletPoint in windows[$index].bulletPoints" data-ng-show="windows[$index].bulletPoints.length > 0">
+                                        <li>{{bulletPoint}}</li>
+                                    </ul>
+                                </p>
+                        </div>
+                    </div>
+                    &emsp;
+                </div>            
+            </div>    
+            <div class="col-xs-1"> </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-5"></div>
+            <div class="col-xs-4">
+                <a href="#" class="btn btn-primary btn-lg">Home</a>
+                <a href="" class="btn btn-primary btn-lg" data-ng-click="goToTop()">Top</a>
+            </div>
+        </div>
+</div>

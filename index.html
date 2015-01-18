@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Web page for Raborn Landscape Design, LLC">
+    <meta name="author" content="Tyler Raborn">
+
+    <title>Raborn Landscape Design LLC</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="dist/css/bootstrap.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/readable/bootstrap.min.css"> -->
+
+    <!-- Custom styles for this template -->
+    <link href="jumbotron.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.11/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.16/angular-route.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-animate.js"></script>
+  <script src="bootstrap/js/ui-bootstrap-tpls.js"></script>
+  <script src="dist/js/bootstrap.min.js"></script>
+
+  <script src="app.js"></script>
+  
+  <link href="//fonts.googleapis.com/css?family=Josefin+Slab:100normal,100italic,300normal,300italic,400normal,400italic,600normal,600italic,700normal,700italic|Open+Sans:400normal|Oswald:400normal|Pacifico:400normal|Amatic+SC:400normal|Allura:400normal|Special+Elite:400normal|Cabin+Sketch:400normal|Merriweather:400normal|Open+Sans+Condensed:300normal|Fredericka+the+Great:400normal&amp;subset=all" rel="stylesheet" type="text/css">
+
+  <script type="text/javascript" language="JavaScript">
+
+    function set_body_height() { // set body height = window height
+      var wh = $(window).height();
+      $('body').height(wh);
+    }
+
+    $(document).ready(function() {
+      set_body_height();
+      $(window).bind('resize', function() { set_body_height(); });
+
+     $('.navbar-collapse ul li a').click(function(){ 
+              $('.navbar-toggle:visible').click();
+      });
+
+      $(window).resize(function() {
+        console.log("window width is: " + window.innerWidth);
+        var element = angular.element($("#quotesection"));
+
+        //hack to fit quotations on smaller screen...
+        element.scope().$apply(function() {
+          if (window.innerWidth < 1700) {
+            //console.log("changing to relative!");
+            element.css("width", (""+(window.innerWidth / 1.3)+"px"));
+          }
+          else {
+            //console.log("changing to absolute!");
+            element.css("width", "300px");
+          }
+        });        
+      });
+    });
+
+  </script>
+
+  </head>
+
+  <body data-ng-app="RabornLandscapeDesign">
+      
+    <!-- set background image, see CSS definitions for stretch behavior -->
+    <div id="background">
+        <img src="img/background1.JPG" class="stretch" alt="" />
+    </div>
+
+    <div class="navbar navbar-inverse navbar-fixed-top rld" role="navigation">
+      <div class="container">
+        <div class="navbar-header pull-right">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          
+        </div>
+
+        <!--
+        <div class="navbar-header pull-left">
+          <a class="navbar-brand" href="#home">Raborn Landscape Design, LLC</a>  
+        </div>-->
+        
+          
+
+        <div class="navbar-collapse collapse">  
+
+          <ul class="nav navbar-nav navbar-left">
+            
+            <!--<li><a class="navbar-brand" href="#home">Raborn Landscape Design, LLC</a></li>-->
+            <li><a href="#home" style="letter-spacing:2px; font-size:20px;">Raborn Landscape Design, LLC</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#designProcess">The Design Process</a></li>
+            <li><a href="#beforeAfter">Before/After</a></li>
+    
+          </ul>      
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#givingBack">Giving Back</a></li>
+            <li data-ng-controller="ModalController"><a data-ng-click="open('lg')">Contact Us</a></li>            
+            <li><a href="#home">Home</a></li>  
+          </ul>
+
+        </div>
+        <div class="collapse navbar-collapse">
+        </div>     
+      </div>
+    </div>  
+
+        
+        <div alert data-ng-controller="RLDMainController" ng-repeat="notification in notifications" type="{{notification.type}}" close="closeNotification($index)">{{notification.msg}}</div>
+        <!-- <div class="jumbotron"> -->
+          <div class="container maxheight">
+
+        <!-- <center><h1>Raborn Landscape Design</h1><br></center> -->
+            <div class="page {{pageClass}}" ng-view></div>
+          </div>
+
+        <!-- </div> -->
+            <!-- <li ng-mouseover="mouseOver(1)" ng-mouseleave="mouseLeave(1)" style="margin:0 0 5px 0;"><a class="tree-element" href="#">Link 2</a></li>
+            <li ng-mouseover="mouseOver(2)" ng-mouseleave="mouseLeave(2)" style="margin:0 0 5px 0;"><a class="tree-element" href="#">Link 3</a></li> -->
+
+        <!--
+        <div class="hero-unit"> 
+          <h1>Current Tree Status: Expanded? {{expanded.toString()}}</h1><br>
+        </div>   
+        -->
+
+
+    <!--<div class="footer"> 
+      <center>
+        <h3 style="font-size: 100%; margin:0 0 5px 0;">Website by Tyler Raborn</h3>
+        <a href="https://angularjs.org/" style="font-size: 100%; color: #222222;margin:0 0 5px 0;">Built with AngularJS</a>
+        <img src="img/angular-small.png">
+      </center>
+    </div>-->
+
+  </body>
+</html>
