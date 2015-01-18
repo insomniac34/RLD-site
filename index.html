@@ -114,7 +114,8 @@
 
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#givingBack">Giving Back</a></li>
-            <li data-ng-controller="ModalController"><a data-ng-click="open('lg')">Contact Us</a></li>            
+            <!-- TODO: make this a json payload to serverside mail handling mechanism -->
+            <li data-ng-controller="RLDMainController"><a data-ng-href="mailto:someone@example.com?Subject=Hello%20again" target="_top">Contact Us</a></li>            
             <li><a href="#home">Home</a></li>  
           </ul>
 
