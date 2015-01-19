@@ -131,7 +131,9 @@
           <div class="container maxheight">
 
         <!-- <center><h1>Raborn Landscape Design</h1><br></center> -->
-            <div class="page {{pageClass}}" ng-view></div>
+            <div class="page {{pageClass}}" ng-view>          
+
+            </div>
           </div>
 
         <!-- </div> -->
@@ -145,13 +147,14 @@
         -->
 
 
-    <!--<div class="footer"> 
-      <center>
-        <h3 style="font-size: 100%; margin:0 0 5px 0;">Website by Tyler Raborn</h3>
-        <a href="https://angularjs.org/" style="font-size: 100%; color: #222222;margin:0 0 5px 0;">Built with AngularJS</a>
-        <img src="img/angular-small.png">
-      </center>
-    </div>-->
+
 
   </body>
+
+<div class="footer" data-ng-controller="RLDMainController"> 
+    <center>
+        <h3 style="font-size: 100%; margin:0 0 5px 0;">Copyright (C) {{getCopyrightDate()}} Tyler Raborn</h3>
+    </center>
+</div>    
+  
 </html>

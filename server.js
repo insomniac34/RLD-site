@@ -3,7 +3,7 @@
         Written by Tyler Raborn
 */
 
-var mysql = require('mysql');
+//var mysql = require('mysql');
 var ns = require('node-static');
 var fileServer = new ns.Server('./');
 

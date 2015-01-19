@@ -81,6 +81,11 @@ angular.module( 'RabornLandscapeDesign', ['ngRoute', 'ngAnimate', 'ui.bootstrap'
       $scope.closeNotification = function(index) {
           $scope.notifications.splice(index, 1);
       };        
+
+      $scope.getCopyrightDate = function() {
+        var date = new Date();
+        return date.getFullYear();
+      };
     }])    
 
     .controller('ContactUsController', ['$scope', '$log', '$http', '$controller', function ContactUsController($scope, $log, $http, $controller) {
@@ -117,9 +122,15 @@ angular.module( 'RabornLandscapeDesign', ['ngRoute', 'ngAnimate', 'ui.bootstrap'
       $scope.pageClass='page-givingBack';
       $scope.windowStates = [];
       $scope.windows = [
-       {visible: true, title: "Tree Pittsburgh", altTitle: "Tree Pittsburgh", content: "Trees are what I feel most passionate about. They  inspire and benefit us in countless ways. Therefore, I pledge to donate 5% of my profits to Tree Pittsburgh, as they teach and support Pittsburgh residents to plant, maintain and protect our city trees. I  was trained as a Tree Tender in 2011 and  volunteer pruning city street trees.", images: [{title: 'Tree Pittsburgh', src: 'img/tree-pittsburgh-sm.jpg', hover: false}], bulletPoints: []},
+       {visible: true, title: "Tree Pittsburgh", altTitle: "Tree Pittsburgh", content: "Trees are what I feel most passionate about. They  inspire and benefit us in countless ways. Therefore, I pledge to donate 5% of my profits to Tree Pittsburgh, as they teach and support Pittsburgh residents to plant, maintain and protect our city trees. I  was trained as a Tree Tender in 2011 and  volunteer pruning city street trees.", images: [{title: 'Tree Pittsburgh', src: 'img/tree-pittsburgh-sm.jpg', hover: false, isLink: true, url: 'http://treepittsburgh.org'}], bulletPoints: []},
        {visible: true, title: "Forbes Elementary School in Penn Hills", altTitle: "Forbes Elementary", content: "I designed and organized the installation of a butterfly garden and a nature trail.", images: [], bulletPoints: []},
-       {visible: true, title: "Winchester Thurston School, North Campus", altTitle: "Winchester Thurston", content: "I designed and organized the installation of the butterfly garden.", images: [], bulletPoints: []}
+       {visible: true, title: "Winchester Thurston School, North Campus", altTitle: "Winchester Thurston", content: "I designed and organized the installation of the butterfly garden.", images: [], bulletPoints: []},
+       {visible: true, title: "Penn Forest Natural Burial Park", altTitle: "Penn Forest", content: "I designed a forest showing the location and species of memorial trees to be planted. I give an environmentally themed talk at the open house/picnic each year.", images: [], bulletPoints: []},
+       {visible: true, title: "Pittsburgh Botanical Garden", altTitle: "Pittsburgh Botanical Garden", content: "I work at the annual plant sale raising money to help transform 460 acres of abandoned mining land into a world class botanic garden. Member since 1998.", images: [], bulletPoints: []},        
+       {visible: true, title: "Arbor Day Foundation", altTitle: "Arbor Day Foundation", content: "Member since 1990", images: [], bulletPoints: []},        
+       {visible: true, title: "Western Pennsylvania Conservancy", altTitle: "Western Pennsylvania Conservancy", content: "Member since 1994", images: [], bulletPoints: []},        
+       {visible: true, title: "Phipps Conservancy and Botanical Gardens", altTitle: "Phipps Conservancy", content: "Member since 2001", images: [], bulletPoints: []},        
+       {visible: true, title: "Penn Hills Community Development Corporation", altTitle: "PHCDC", content: "Member since 2001", images: [], bulletPoints: []}
       ];
 
       for (var i = 0; i < $scope.windows.length; i++) {
@@ -136,7 +147,7 @@ angular.module( 'RabornLandscapeDesign', ['ngRoute', 'ngAnimate', 'ui.bootstrap'
       }; 
 
       $scope.goToWindow = function(windowId) {
-        $log.info("goToWindow: windowId is " + windowId);
+        //$log.info("goToWindow: windowId is " + windowId);
         $location.hash(windowId);
         $anchorScroll();
       };      
@@ -165,7 +176,19 @@ angular.module( 'RabornLandscapeDesign', ['ngRoute', 'ngAnimate', 'ui.bootstrap'
       $scope.windows = [
         {visible: true, title: 'Why Hire a Designer?', content: "", images: [], bulletPoints: ["To increase your home's resale value. According to home expert Bob Vila, a well designed landscape can add 20% to the value of your property.", "To add to your home's living space without \"adding on\"", "To increase your property's functionality for whatever you want to do outside: entertain large groups, enjoy a private, intimate seating area, barbecue and dine conveniently close to the kitchen or to have a vegetable garden.", "To have the flexibility to implement the design one area at a time or all at once, as money and time permits. You can do some of the work yourself, now that you know where and what to plant."]}, 
         {visible: true, title: 'Horticulture + Art + Psychology = Good Design', content: "", images: [], bulletPoints: ["-Horticulture - Each site has unique environmental qualities. These micro-climates are determined by the direction of the sun, the direction of the prevailing winds, moisture and drainage issues and the quality of the soil. Plant species are chosen based on this information. Right plant for the right space.", "-Art - A well designed landscape does not arise from some abstract vision. It is the result of the application of solid design principles. While it certainly includes elements of creativity, it primarily uses proven techniques and applies them, sometimes in unexpected ways.", "-Psychology - The ability to determine what the customer really wants is crucial. This process involves listening carefully to you, sharing ideas back and forth and combining our visions. The end result should reduce stress and create a feeling of well being. Landscape affects people and arouses feelings."]},
-        {visible: true, title: 'Why Choose RLD?', content: "", images: [], bulletPoints: ["There is no charge for my initial visit, since you are just getting to know me.", "All drawings are done by hand, not on the computer, creating a less generic, one-of-a-kind piece of art.", "Designs are a collaborative effort, compared to firms where you sit back and wait for a completed design. ", "At least two preliminary designs are developed, allowing you to choose your favorite design or to choose individual elements from each design."]}
+        {visible: true, title: 'Step-by-Step', content: "", images: [], bulletPoints: [
+            "1. A questionnaire will be sent to you for information and to encourage your thoughts and ideas.", 
+            "2. During our first meeting, we will walk around your property discussing your thoughts and ideas.", 
+            "3. Measurements will be taken of your existing property including trees, shrubs, driveway, patio, deck, fences, windows, electrical and cable wires, gas lines, etc.", 
+            "4. A site assessment of existing environmental conditions will be completed, including a soil analysis that will be sent to Penn State Agricultural Analytical Services Laboratory.",
+            "5. All accumulated information will be used to draw a base map to scale.",
+            "6. Two preliminary plans will be developed and reviewed with you. These drawings show: \n-proposed hardscape \n-proposed general types of plantings \n-existing hardscape and plants that are to remain",
+            "7. One of the preliminary plans will then be refined OR elements from both plans will be combined to create a new design. Plants are chosen based on your preferences, aesthetics and environmental conditions.",
+            "8. We will meet a second time to review the refined drawing and to make any desired changes.",
+            "9. Two copies of the construction plan will be presented, one for you and one for a landscape contractor, if you decide to hire one. This black ink drawing will show all proposed hardscape and plantings. A list of the plants, their descriptions and maintenance tips will be reviewed. Detailed construction drawings and installation specifications are not included.",
+            "10. The color master plan will be presented and reviewed with you.",
+            "11. Installation. I work with many landscape contractors and I can recommend someone who is right for your specific job."
+        ]}
       ];
 
       for (var i = 0; i < $scope.windows.length; i++) {
@@ -182,7 +205,7 @@ angular.module( 'RabornLandscapeDesign', ['ngRoute', 'ngAnimate', 'ui.bootstrap'
       }; 
 
       $scope.goToWindow = function(windowId) {
-        $log.info("goToWindow: windowId is " + windowId);
+        //$log.info("goToWindow: windowId is " + windowId);
         $location.hash(windowId);
         $anchorScroll();
       };      
@@ -387,7 +410,7 @@ angular.module( 'RabornLandscapeDesign', ['ngRoute', 'ngAnimate', 'ui.bootstrap'
 
       angular.forEach($scope.windows, function(curWindow) {
         if (curWindow.images.length > 3) {
-          $log.info(curWindow.title + " has more than 3 images!");
+          //$log.info(curWindow.title + " has more than 3 images!");
           var counter = 0;
           var imageGrouping = [];
           for (var i = 0; i < curWindow.images.length; i++) {
@@ -398,7 +421,7 @@ angular.module( 'RabornLandscapeDesign', ['ngRoute', 'ngAnimate', 'ui.bootstrap'
               imageGrouping = [];
             } 
             //load groupings of three into imageGrouping array
-            $log.info("Loading image " + curWindow.images[i].src);
+            //$log.info("Loading image " + curWindow.images[i].src);
             imageGrouping.push(curWindow.images[i]);
             counter++;
           }
@@ -420,7 +443,7 @@ angular.module( 'RabornLandscapeDesign', ['ngRoute', 'ngAnimate', 'ui.bootstrap'
       }; 
 
       $scope.goToWindow = function(windowId) {
-        $log.info("goToWindow: windowId is " + windowId);
+        //$log.info("goToWindow: windowId is " + windowId);
         $location.hash(windowId);
         $anchorScroll();
       };      
@@ -443,7 +466,13 @@ angular.module( 'RabornLandscapeDesign', ['ngRoute', 'ngAnimate', 'ui.bootstrap'
       $scope.windows = [
         {visible: true, title: 'Description', content: "Raborn Landscape Design LLC is a one woman landscape design business managed by myself, Kathy Raborn. I have been designing landscapes since 1997. Although my design work is primarily residential, I  also design commercial landscapes. My associate degree is in horticulture and landscape design and I continually further this education through attending lectures and workshops. My bachelor's degree is in psychology and I have 10 years of counseling experience. This has helped me develop the all-important listening skills. The ability to listen to a customer and to understand what they really want, is crucial in design.", images: [], bulletPoints: []}, 
         {visible: true, title: 'Mission', content: "My goal for every residential project is to design an outdoor sanctuary that enhances your quality of life. Your outdoor home environment should be aesthetically pleasing, functional, easy to maintain, and representative of your personal style. I consider every job a privilege and a responsibility.", images: [], bulletPoints: []}, 
-        {visible: true, title: 'Specializing In:', content: "", images: [], bulletPoints: ["designing hardscapes such as terraces and pathways to bring you INTO the garden, not just past the garden", "lower maintenance gardens", "deer resistant gardens", "sustainable designs with native plants and those that support wildlife, such as butterflies", "storm water management systems, such as a rain gardens"]},
+        {visible: true, title: 'Specializing In:', content: "", images: [], bulletPoints: [
+            "designing hardscapes such as terraces and pathways to bring you INTO the garden, not just past the garden", 
+            "lower maintenance gardens", 
+            "deer resistant gardens", 
+            "sustainable designs with native plants and those that support wildlife, such as butterflies", 
+            "storm water management systems, such as a rain gardens"
+        ]},
         {visible: true, title: 'Why Choose RLD?', content: "", images: [], bulletPoints: ["There is no charge for my initial visit, since you are just getting to know me.", "All drawings are done by hand, not on the computer, creating a less generic, one-of-a-kind piece of art.", "Designs are a collaborative effort, compared to firms where you sit back and wait for a completed design. ", "At least two preliminary designs are developed, allowing you to choose your favorite design or to choose individual elements from each design."]}
       ];
 
@@ -462,7 +491,7 @@ angular.module( 'RabornLandscapeDesign', ['ngRoute', 'ngAnimate', 'ui.bootstrap'
 
       /* for navigating to a specific information window...close all windows except for the passed-in window */
       $scope.goToWindow = function(windowId) {
-        $log.info("goToWindow: windowId is " + windowId);
+        //$log.info("goToWindow: windowId is " + windowId);
         $location.hash(windowId);
         $anchorScroll();
       };

@@ -6,10 +6,9 @@
             <div class="col-xs-6">
                 <h1>The Design Process</h1>
             </div>
-            <div class="col-xs-3"></div>
         
             <div class="col-xs-4"></div>
-            <div class="col-xs-6" style="margin-left:50px;">
+            <div class="col-xs-2" style="margin-left:50px;">
                 <div class="jump-list" data-ng-repeat="window in windows">
                     <a class="btn btn-primary btn-sm" style="margin-top: 5px;" data-ng-click="goToWindow(window.title)"><b>{{window.title}}</b></a>
                 </div>                        
@@ -47,7 +46,7 @@
                         <div class="para">
                                 <p>
                                     {{window.content}}
-                                    <ul style="" data-ng-repeat="bulletPoint in windows[$index].bulletPoints" data-ng-show="windows[$index].bulletPoints.length > 0">
+                                    <ul style="" data-ng-repeat="bulletPoint in windows[$index].bulletPoints">
                                         <li>{{bulletPoint}}</li>
                                     </ul>
                                 </p>
@@ -67,3 +66,9 @@
             </div>
         </div>
 </div>
+
+<div class="footer" data-ng-controller="RLDMainController"> 
+    <center>
+        <h3 style="font-size: 100%; margin-top: 20px;">Copyright (C) {{getCopyrightDate()}} Tyler Raborn</h3>
+    </center>
+</div>    
